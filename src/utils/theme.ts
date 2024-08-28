@@ -1,0 +1,6 @@
+export const COLORS = {
+    desGray: '#666666',
+    textBlack: '#222222',
+    bottomBar : '#ecf0f6'
+  };
+  
