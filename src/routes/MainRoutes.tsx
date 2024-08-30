@@ -1,19 +1,10 @@
-import React, {PropsWithChildren} from 'react';
+import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {COLORS} from '../utils/theme';
 import {ROUTES} from '../utils/constants';
 import {TabIcon} from '../components/TabIcon';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-import useFetchNews from '../hooks/useFetchNews';
+
+import Home from '../screens/Home';
 
 const BottomTabs = createBottomTabNavigator();
 
@@ -81,22 +72,3 @@ function MainRoutes() {
 }
 
 export default MainRoutes;
-
-const Home = () => {
-  const {newsData, loading, error} = useFetchNews();
-  console.log('neew are there ', newsData);
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <Text>this it works</Text>
-    </SafeAreaView>
-  );
-};

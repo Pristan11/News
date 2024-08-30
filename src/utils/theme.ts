@@ -2,7 +2,8 @@ export const COLORS = {
     desGray: '#666666',
     textBlack: '#222222',
     bottomBar : '#ecf0f6',
-    orange: "orange"
+    orange: "orange",
+    white: "white",
 
   };
   
