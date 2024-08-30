@@ -1,19 +1,15 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axiosInstance from '../../api/axiosInstance';
-import Config from 'react-native-config';
+import { paramsType } from '../../@types/type';
+import { getNews } from '../../api/model/newsModel';
+
 
 export const fetchNewsData = createAsyncThunk(
   'fetchNewsData',
-  async (id, { rejectWithValue }) => {
+  async (params: paramsType, { rejectWithValue }) => {
     try {
-      const response = await axiosInstance.get(`everything?q=Apple&from=2024-08-21&sortBy=popularity&apiKey=${Config.NEWS_API}
-`);
-console.log("news api",  Config.NEWS_API)
-// console.log("response data", response.data, Config.NEWS_API)
-      return response.data;
+      const response = await getNews(params);
+      return response;
     } catch (error:  any) {
-      console.log("news api",  Config.NEWS_API)
-      console.log("response data catcg errir", error)
       return rejectWithValue(error?.response?.data || error?.message);
     }
   }

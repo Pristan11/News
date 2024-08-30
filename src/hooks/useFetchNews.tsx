@@ -1,8 +1,6 @@
-import {useEffect} from 'react';
+import {useEffect, useCallback} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchNewsData} from '../redux/slices/news';
-import NetInfo from '@react-native-community/netinfo';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AppDispatch, RootState} from '../redux/store';
 
 const useFetchNews = () => {
@@ -11,26 +9,22 @@ const useFetchNews = () => {
     (state: RootState) => state.news,
   );
 
+  const fetchData = useCallback(async (forceFetch = false) => {
+    if (forceFetch || (!loading && !newsData.length)) {
+      dispatch(fetchNewsData({type: 'ALL'}));
+    }
+  }, []);
+
   useEffect(() => {
-    const fetchData = async (id: any) => {
-      const netInfo = await NetInfo.fetch();
-      if (netInfo.isConnected) {
-        console.log('api is called');
-        dispatch(fetchNewsData());
-      } else {
-        const cachedData = await AsyncStorage.getItem(`/users/${id}`);
-        if (cachedData) {
-          dispatch(fetchNewsData.fulfilled(JSON.parse(cachedData), '', id));
-        } else {
-          console.error('No data available offline');
-        }
-      }
-    };
+    fetchData();
+  }, [fetchData]);
 
-    fetchData('id');
-  }, [dispatch]);
-
-  return {newsData, loading, error};
+  return {
+    newsData,
+    loading,
+    error,
+    refetch: () => fetchData(true),
+  };
 };
 
 export default useFetchNews;
