@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { paramsType } from '../../@types/type';
+import { NewsArticle,paramsType } from '../../@types/type';
 import { getNews } from '../../api/model/newsModel';
 
 
@@ -15,13 +15,13 @@ export const fetchNewsData = createAsyncThunk(
   }
 );
 type initialDataType  = {
-    newsData: {},
+    newsData: NewsArticle[] | [],
     loading: boolean,
     error: any,
   };
 
 const initialState: initialDataType = {
-    newsData: {},
+    newsData: [],
     loading: false,
     error: null,
   }
@@ -37,7 +37,7 @@ const newsSlice = createSlice({
       })
       .addCase(fetchNewsData.fulfilled, (state, action) => {
         state.loading = false;
-        state.newsData = action.payload;
+        state.newsData = action.payload.articles;
       })
       .addCase(fetchNewsData.rejected, (state, action) => {
         state.loading = false;

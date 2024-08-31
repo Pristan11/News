@@ -3,6 +3,7 @@ import {SafeAreaView, StatusBar, useColorScheme, View} from 'react-native';
 import Header from '../components/Header';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import useFetchNews from '../hooks/useFetchNews';
+import NewsSlider from '../components/home/NewsSlider';
 
 function Home() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -20,6 +21,7 @@ function Home() {
         backgroundColor={backgroundStyle.backgroundColor}
       />
       <Header />
+      <NewsSlider data={newsData?.slice(0,10)}/>
     </SafeAreaView>
   );
 }
