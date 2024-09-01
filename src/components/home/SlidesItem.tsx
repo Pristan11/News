@@ -7,7 +7,7 @@ import {formatDate} from '../../utils/functions';
 import Container from '../Container';
 import {images} from '../../styles/images';
 
-const SlidesItem = ({item}: {item: NewsArticle}) => {
+const SlidesItem = React.memo(({item}: {item: NewsArticle}) => {
   return (
     <ImageBackground
       source={item.urlToImage ? {uri: item.urlToImage} : images.slideLoadImage}
@@ -22,7 +22,7 @@ const SlidesItem = ({item}: {item: NewsArticle}) => {
       </View>
     </ImageBackground>
   );
-};
+});
 export default SlidesItem;
 
 const styles = StyleSheet.create({

@@ -17,3 +17,10 @@ export const DEVICE = {
   width: width,
   height: height
 }
+export const CategoriesData = [
+    {text: 'ALL', value: 'ALL'},
+    {text: 'Business', value: 'Business'},
+    {text: 'Sports', value: 'Sports'},
+    {text: 'Technology', value: 'Technology'},
+    {text: 'Health', value: 'Health'},
+  ];

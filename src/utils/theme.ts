@@ -4,6 +4,8 @@ export const COLORS = {
     bottomBar : '#ecf0f6',
     orange: "orange",
     white: "white",
+    primaryBlue: "#0b4d9f",
+    backgroundGray: "#edebfa"
 
   };
   

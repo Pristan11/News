@@ -1,26 +1,31 @@
 import React  from 'react';
 import {SwiperFlatList} from 'react-native-swiper-flatlist';
-import { NewsArticle } from '../../@types/type';
 import { keyExtractor } from '../../utils/functions';
 import SlidesItem from './SlidesItem';
+import useFetchNews from '../../hooks/useFetchNews';
+import { View } from 'react-native';
 
-type NewsSliderType = {
-    data : NewsArticle[] | []
-}
-function NewsSlider({data}: NewsSliderType) {
 
+function NewsSlider() {
+    const {newsData} = useFetchNews();
   return (
-      <SwiperFlatList
+    <View>
+    {newsData && newsData.length> 0 &&
+        <SwiperFlatList
         autoplayLoopKeepAnimation={false}
         autoplay
         numColumns={1}
         autoplayDelay={3}
         autoplayLoop
         index={1}
-        data={data}
-        renderItem={SlidesItem}
+        data={newsData}
+        renderItem={({item})=> <SlidesItem item={item}/>}
         keyExtractor={keyExtractor}
       />
+    }
+  
+  </View>
+    
   );
 }
 

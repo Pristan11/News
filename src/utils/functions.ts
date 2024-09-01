@@ -1,6 +1,4 @@
-import { useCallback } from "react";
-
-export const keyExtractor = useCallback((item: any, index: { toString: () => any; }) => index.toString(), []);
+export const keyExtractor =(item: any, index: { toString: () => any; }) => index.toString();
 
 export function formatDate(date: string | number | Date){
     const _date = new Date(date);

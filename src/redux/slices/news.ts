@@ -8,7 +8,8 @@ export const fetchNewsData = createAsyncThunk(
   async (params: paramsType, { rejectWithValue }) => {
     try {
       const response = await getNews(params);
-      return response;
+      console.log("response ------------------", response, params)
+      return {response, params};
     } catch (error:  any) {
       return rejectWithValue(error?.response?.data || error?.message);
     }
@@ -16,12 +17,14 @@ export const fetchNewsData = createAsyncThunk(
 );
 type initialDataType  = {
     newsData: NewsArticle[] | [],
+    allCategoryNews: NewsArticle[] | [],
     loading: boolean,
     error: any,
   };
 
 const initialState: initialDataType = {
     newsData: [],
+    allCategoryNews: [],
     loading: false,
     error: null,
   }
@@ -37,7 +40,12 @@ const newsSlice = createSlice({
       })
       .addCase(fetchNewsData.fulfilled, (state, action) => {
         state.loading = false;
-        state.newsData = action.payload.articles;
+        if(action.payload.params.type == 'ALL'){
+          state.newsData = action.payload.response.articles;
+        }else if(action.payload.params.type == 'CATEGORY'|| action.payload.params.type == 'ALL_CATEGORY') {
+          console.log("-----------------action.", action.payload)
+          state.allCategoryNews = action.payload.response.articles;
+        }
       })
       .addCase(fetchNewsData.rejected, (state, action) => {
         state.loading = false;

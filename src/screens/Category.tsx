@@ -1,11 +1,9 @@
 import React from 'react';
 import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
-import Header from '../components/Header';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import NewsSlider from '../components/home/NewsSlider';
 import Categories from '../components/home/category/Categories';
 
-function Home() {
+function CategoryScreen() {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -17,11 +15,9 @@ function Home() {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <Header />
-      <NewsSlider/>
-      <Categories viewAllButton={true}/>
+      <Categories viewAllButton={false} />
     </SafeAreaView>
   );
 }
 
-export default Home;
+export default CategoryScreen;

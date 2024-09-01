@@ -8,13 +8,14 @@ export const getNews = async (params: paramsType): Promise<NewsResponse> => {
 
         if (params.type === 'ALL') {
             url = `top-headlines?sources=bbc-news&apiKey=${Config.NEWS_API}`;
-            // url = `top-headlines?country=id&apiKey=${Config.NEWS_API}`;
         } else if (params.type === 'CATEGORY') {
             url = `top-headlines?country=id&category=${params.category}&apiKey=${Config.NEWS_API}`;
         } else if (params.type === 'SEARCH') {
             url = `everything?q=${params.keyword}&apiKey=${Config.NEWS_API}`;
-        } else {
+        } else if(params.type === 'ALL_CATEGORY') {
             url = `everything?q=Apple&from=2024-08-21&sortBy=popularity&apiKey=${Config.NEWS_API}`;
+        }else{
+            url = `top-headlines?country=lk&apiKey=${Config.NEWS_API}`;
         }
 
         const response = await requestWithCache(url);

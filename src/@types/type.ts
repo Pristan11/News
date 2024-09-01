@@ -1,9 +1,12 @@
+import {  NavigationProp, ParamListBase, RouteProp } from "@react-navigation/native";
+
 export type _type ={
     ALL: {type: 'ALL'},
-    CATEGORY: {category: string, type: 'CATEGORY'},
-    SEARCH: {keyword: string, type: 'SEARCH'}
+    CATEGORY: {category: string | undefined, type: 'CATEGORY'},
+    SEARCH: {keyword: string | undefined, type: 'SEARCH'},
+    ALL_CATEGORY :{type: 'ALL_CATEGORY'}
   }
- export type paramsType = _type["ALL"] | _type["CATEGORY"] | _type["SEARCH"];
+ export type paramsType = _type["ALL"] | _type["CATEGORY"] | _type["SEARCH"] | _type["ALL_CATEGORY"];
   
  export interface NewsArticle {
     source: {
@@ -24,3 +27,17 @@ export interface NewsResponse {
     totalResults: number;
     articles: NewsArticle[];
 }
+
+
+
+export type ScreenProp = {
+  navigation: NavigationProp<
+    ParamListBase,
+    string,
+    string | undefined,
+    any,
+    any,
+    any
+  >;
+  route: RouteProp<any>;
+};
