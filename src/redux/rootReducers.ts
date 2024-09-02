@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import newsReducer from './slices/news';
-
+import bookMarkReducer from './slices/bookMarkSlice'
 
 const rootPersistConfig = {
   key: 'root',
@@ -11,7 +11,8 @@ const rootPersistConfig = {
 };
 
 const rootReducer = combineReducers({
-  news: newsReducer
+  news: newsReducer,
+  bookmark: bookMarkReducer
 });
 
 export {rootPersistConfig, rootReducer};
