@@ -5,8 +5,11 @@ export const BASE_URL = 'http://newsapi.org/v2/'
 
 export const ROUTES = {
  MAIN: {
+   ROOT: {
+   MAIN: 'main',
    HOME: 'home',
    SEARCH : 'search',
+   },
    FILTER : 'filter',
    BOOK_MARK: 'bookmark',
    NO_INTERNET: 'no-internet',

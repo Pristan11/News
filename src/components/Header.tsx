@@ -1,12 +1,15 @@
 import React from 'react';
-import {Image, StyleSheet, View} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {COLORS} from '../utils/theme';
 import {commonStyles, padding} from '../styles/styles';
 import Container from './Container';
 import {images} from '../styles/images';
+import { ROUTES } from '../utils/constants';
+import { useNavigation } from '@react-navigation/native';
 
 function Header() {
+    const navigation = useNavigation();
   return (
     <View
       style={{
@@ -27,9 +30,12 @@ function Header() {
             <Icon name="bell" size={20} color="#b3b1b1" />
           </View>
           <Container width={20} />
-          <View style={styles.iconBackground}>
+          <TouchableOpacity style={styles.iconBackground} onPress={()=> {
+            //@ts-ignore
+            navigation.navigate(ROUTES.MAIN.ROOT.SEARCH)
+            }}>
             <Icon name="search" size={20} color="#b3b1b1" />
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
     </View>

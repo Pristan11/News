@@ -3,15 +3,16 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {COLORS} from '../utils/theme';
 import {ROUTES} from '../utils/constants';
 import {TabIcon} from '../components/TabIcon';
-
-import Home from '../screens/Home';
+import CategoryScreen from '../screens/Category';
+import BookMark from '../screens/BookMark';
+import HomeRoutes from './HomeRoutes';
 
 const BottomTabs = createBottomTabNavigator();
 
 function MainRoutes() {
   return (
     <BottomTabs.Navigator
-      initialRouteName={ROUTES.MAIN.HOME}
+      initialRouteName={ROUTES.MAIN.ROOT.MAIN}
       screenOptions={{
         unmountOnBlur: true,
         tabBarActiveTintColor: COLORS.orange,
@@ -24,8 +25,8 @@ function MainRoutes() {
         },
       }}>
       <BottomTabs.Screen
-        name={ROUTES.MAIN.HOME}
-        component={Home}
+        name={ROUTES.MAIN.ROOT.MAIN}
+        component={HomeRoutes}
         options={{
           headerShown: false,
           title: '',
@@ -34,20 +35,8 @@ function MainRoutes() {
       />
 
       <BottomTabs.Screen
-        name={ROUTES.MAIN.SEARCH}
-        component={Home}
-        options={{
-          headerShown: false,
-          title: '',
-          tabBarIcon: ({focused}) => (
-            <TabIcon name="search" focused={focused} />
-          ),
-        }}
-      />
-
-      <BottomTabs.Screen
         name={ROUTES.MAIN.FILTER}
-        component={Home}
+        component={CategoryScreen}
         options={{
           headerShown: false,
           title: '',
@@ -58,7 +47,7 @@ function MainRoutes() {
       />
       <BottomTabs.Screen
         name={ROUTES.MAIN.BOOK_MARK}
-        component={Home}
+        component={BookMark}
         options={{
           headerShown: false,
           title: '',
