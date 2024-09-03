@@ -15,6 +15,10 @@ export const ROUTES = {
    NO_INTERNET: 'no-internet',
    NEWS_DETAILS: 'news-details',
   },
+  INITIAL: {
+    SIGN_IN : 'sign-in',
+    ROOT: 'root'
+  }
 };
 export const DEVICE = {
   width: width,

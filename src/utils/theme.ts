@@ -5,7 +5,38 @@ export const COLORS = {
     orange: "orange",
     white: "white",
     primaryBlue: "#0b4d9f",
-    backgroundGray: "#edebfa"
+    backgroundGray: "#edebfa",
+
+
+    green: '#00914f',
+    // white: '#FCFCFA',
+    black: '#1E1E1E',
+    // backgroundGray: '#eee',
+    backgroundGrayLight: '#f0f1f5',
+    placeHolder: '#a5a5a5',
+    gray: '#232020FF',
+    activeColor: '#f0edf6',
+    inactiveColor: '#3e2465',
+    lightBlue: '#61dafb',
+    boxShadow : '#52006A',
+    cardBackground: '#efeef1',
+    descriptionText: '#bdbdbf',
+    red: '#c1041a',
+    darkBlue: '#0d182c',
+    greenButton: '#0ca74f',
+    whitePure: '#ffffff',
+    blackPure: '#000000',
+    lightGray: '#e8e6e6',
+    iconBackground: '#ecf0f6',
+    // desGray: '#666666',
+    // textBlack: '#222222',
+    backgroundRed: '#ffdcce',
+    textRed: '#f15c22',
+    textOrange: '#f15c22',
+    borderColor: '#e7e7e7',
+    backgroundLightGray: '#ecf0f6',
+    lightOrange: '#f36d3a',
+    lightWhite: '#dee9e7'
 
   };
   

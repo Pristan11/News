@@ -6,6 +6,8 @@ import {TabIcon} from '../components/TabIcon';
 import CategoryScreen from '../screens/Category';
 import BookMark from '../screens/BookMark';
 import HomeRoutes from './HomeRoutes';
+import SignIn from '../screens/SignIn';
+import RegisterScreen from '../screens/RegisterScreen';
 
 const BottomTabs = createBottomTabNavigator();
 
