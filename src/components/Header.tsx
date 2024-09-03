@@ -5,11 +5,13 @@ import {COLORS} from '../utils/theme';
 import {commonStyles, padding} from '../styles/styles';
 import Container from './Container';
 import {images} from '../styles/images';
-import { ROUTES } from '../utils/constants';
-import { useNavigation } from '@react-navigation/native';
+import {ROUTES} from '../utils/constants';
+import {useNavigation} from '@react-navigation/native';
+import useNotification from '../hooks/useNotification';
 
 function Header() {
-    const navigation = useNavigation();
+  const navigation = useNavigation();
+  const {sendNotification} = useNotification();
   return (
     <View
       style={{
@@ -26,13 +28,17 @@ function Header() {
           />
         </View>
         <View style={commonStyles.rowSpaceBetween}>
-          <View style={styles.iconBackground}>
+          <TouchableOpacity
+            style={styles.iconBackground}
+            onPress={() => sendNotification()}>
             <Icon name="bell" size={20} color="#b3b1b1" />
-          </View>
+          </TouchableOpacity>
           <Container width={20} />
-          <TouchableOpacity style={styles.iconBackground} onPress={()=> {
-            //@ts-ignore
-            navigation.navigate(ROUTES.MAIN.ROOT.SEARCH)
+          <TouchableOpacity
+            style={styles.iconBackground}
+            onPress={() => {
+              //@ts-ignore
+              navigation.navigate(ROUTES.MAIN.ROOT.SEARCH);
             }}>
             <Icon name="search" size={20} color="#b3b1b1" />
           </TouchableOpacity>

@@ -18,8 +18,8 @@ function Home() {
         backgroundColor={backgroundStyle.backgroundColor}
       />
       <Header />
-      <NewsSlider/>
-      <Categories viewAllButton={true}/>
+      <NewsSlider />
+      <Categories viewAllButton={true} />
     </SafeAreaView>
   );
 }
