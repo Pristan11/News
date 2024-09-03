@@ -1,5 +1,13 @@
 import React, {useMemo} from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Alert,
+  Image,
+  Linking,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {NewsArticle} from '../../../@types/type';
 import {commonStyles, padding} from '../../../styles/styles';
 import {COLORS} from '../../../utils/theme';
@@ -19,8 +27,11 @@ const CategoryContainer = React.memo(
     const isBookmarkedStatus = useSelector((state: RootState) =>
       selectIsBookmarked(state, item.title),
     );
-
-    const handleBookmarkToggle = () => {
+    const handleOnPress = (url: string) => {
+      Linking.openURL(`${url}`).catch(error => Alert.alert(error));
+    };
+    const handleBookmarkToggle = (event: React.SyntheticEvent) => {
+      event.stopPropagation();
       if (isBookmarkedStatus) {
         dispatch(removeBookmark(item.title));
       } else {
@@ -35,7 +46,9 @@ const CategoryContainer = React.memo(
 
     let randomImageUrl = useMemo(getRandomImage, []);
     return (
-      <TouchableOpacity style={[commonStyles.row, styles.main]}>
+      <TouchableOpacity
+        style={[commonStyles.row, styles.main]}
+        onPress={() => handleOnPress(item.url)}>
         <View style={{flex: 2}}>
           <Image
             source={
@@ -52,14 +65,15 @@ const CategoryContainer = React.memo(
             {item.description}
           </Text>
         </View>
-        <View style={{flex: 0.5}}>
+        <TouchableOpacity
+          style={{flex: 0.5}}
+          onPress={event => handleBookmarkToggle(event)}>
           <Icon
-            onPress={() => handleBookmarkToggle()}
             color={isBookmarkedStatus ? COLORS.orange : COLORS.backgroundGray}
             name={'bookmark'}
             size={24}
           />
-        </View>
+        </TouchableOpacity>
       </TouchableOpacity>
     );
   },
