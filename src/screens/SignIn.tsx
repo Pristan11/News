@@ -37,7 +37,6 @@ function SignIn({navigation}: ScreenProp) {
       response = await GoogleSignin.signIn();
       navigation.navigate(ROUTES.INITIAL.ROOT);
     } catch (e) {
-      console.log('error', e);
       navigation.navigate(ROUTES.INITIAL.ROOT);
     }
   }
@@ -102,7 +101,7 @@ function SignIn({navigation}: ScreenProp) {
           />
           <View style={[commonStyles.row, styles.registerLink]}>
             <Text style={styles.account}>Don't have an account?</Text>
-            <TouchableOpacity onPress={() => console.log('Register pressed')}>
+            <TouchableOpacity>
               <Text style={styles.registerText}> Register</Text>
             </TouchableOpacity>
           </View>

@@ -8,7 +8,6 @@ export const fetchNewsData = createAsyncThunk(
   async (params: paramsType, { rejectWithValue }) => {
     try {
       const response = await getNews(params);
-      console.log("response ------------------", response, params)
       return {response, params};
     } catch (error:  any) {
       return rejectWithValue(error?.response?.data || error?.message);
@@ -43,7 +42,6 @@ const newsSlice = createSlice({
         if(action.payload.params.type == 'ALL'){
           state.newsData = action.payload.response.articles;
         }else if(action.payload.params.type == 'CATEGORY'|| action.payload.params.type == 'ALL_CATEGORY') {
-          console.log("-----------------action.", action.payload)
           state.allCategoryNews = action.payload.response.articles;
         }
       })
