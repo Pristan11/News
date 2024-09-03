@@ -8,3 +8,10 @@
 #   http://developer.android.com/guide/developing/tools/proguard.html
 
 # Add any project specific keep options here:
+-keep class com.yourpackage.** { *; }
+-keepclassmembers class * {
+    @com.google.gson.annotations.SerializedName <fields>;
+}
+-keep class okhttp3.** { *; }
+-keep class retrofit2.** { *; }
+-keep interface retrofit2.** { *; }
