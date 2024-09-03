@@ -1,6 +1,5 @@
 import React from 'react';
 import {ROUTES} from '../utils/constants';
-import Home from '../screens/Home';
 import {createStackNavigator} from '@react-navigation/stack';
 import MainRoutes from './MainRoutes';
 import SignIn from '../screens/SignIn';
@@ -14,8 +13,8 @@ function InitialRoutes() {
       screenOptions={{
         headerShown: false,
       }}>
-      <Stack.Screen name={ROUTES.MAIN.ROOT.HOME} component={SignIn} />
-      <Stack.Screen name={ROUTES.MAIN.ROOT.SEARCH} component={MainRoutes} />
+      <Stack.Screen name={ROUTES.INITIAL.SIGN_IN} component={SignIn} />
+      <Stack.Screen name={ROUTES.INITIAL.ROOT} component={MainRoutes} />
     </Stack.Navigator>
   );
 }

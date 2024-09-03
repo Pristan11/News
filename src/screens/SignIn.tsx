@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Image,
   KeyboardAvoidingView,
@@ -10,21 +10,40 @@ import {
   View,
 } from 'react-native';
 import {COLORS} from '../utils/theme';
-import {DEVICE} from '../utils/constants';
+import {DEVICE, ROUTES} from '../utils/constants';
 import CustomButton from '../components/CustomButton';
 import Container from '../components/Container';
 import ImageButton from '../components/auth/ImageButton';
 import LabelInput from '../components/auth/LabelInput';
 import {commonStyles} from '../styles/styles';
+import {GoogleSignin, User} from '@react-native-google-signin/google-signin';
+import {ScreenProp} from '../@types/type';
 
-function SignIn() {
+function SignIn({navigation}: ScreenProp) {
+  useEffect(() => {
+    GoogleSignin.configure({
+      webClientId:
+        '545283269490-s70srbqb2q4ddfjssar16o8qpk5ut445.apps.googleusercontent.com',
+    });
+  }, []);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
+  async function onGoogleButtonPress() {
+    await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
+    let response;
+    try {
+      response = await GoogleSignin.signIn();
+      navigation.navigate(ROUTES.INITIAL.ROOT);
+    } catch (e) {
+      console.log('error', e);
+      navigation.navigate(ROUTES.INITIAL.ROOT);
+    }
+  }
   return (
     <KeyboardAvoidingView
-      keyboardVerticalOffset={20}
+      keyboardVerticalOffset={60}
       behavior={'height'}
       style={styles.mainView}>
       <ScrollView
@@ -41,13 +60,13 @@ function SignIn() {
         </View>
         <View style={styles.buttonContainer}>
           <ImageButton
-            onPress={() => console.log('Google pressed')}
+            onPress={() => onGoogleButtonPress()}
             image={require('../../assets/images/login/google.png')}
             title={'Google'}
           />
           <Container width={20} />
           <ImageButton
-            onPress={() => console.log('Facebook pressed')}
+            onPress={() => navigation.navigate(ROUTES.INITIAL.ROOT)}
             image={require('../../assets/images/login/facebook.png')}
             title={'Facebook'}
           />
@@ -79,7 +98,7 @@ function SignIn() {
         <View style={styles.buttonWrapper}>
           <CustomButton
             label="Login"
-            onPress={() => console.log('Login pressed')}
+            onPress={() => navigation.navigate(ROUTES.INITIAL.ROOT)}
           />
           <View style={[commonStyles.row, styles.registerLink]}>
             <Text style={styles.account}>Don't have an account?</Text>
@@ -156,3 +175,10 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
 });
+function isSuccessResponse(response: User) {
+  throw new Error('Function not implemented.');
+}
+
+function isErrorWithCode(error: unknown) {
+  throw new Error('Function not implemented.');
+}
